@@ -1,0 +1,122 @@
+{
+  "name": "ConyBlockBrace",
+  "displayName": "BlockBrace",
+  "description": "本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,实现可视化编程.",
+  "version": "1.0.2",
+  "engines": {
+    "vscode": "^0.10.5"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:json",
+    "onLanguage:java",
+    "onLanguage:c",
+    "onLanguage:cpp"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ConyBlockBrace.ConySettings",
+        "title": "settings"
+      },
+      {
+        "command": "ConyBlockBrace.ConyAbout",
+        "title": "about the extension"
+      },
+      {
+        "command": "ConyBlockBrace.ConyToggleHighlighting",
+        "title": "Switch On/Off BlockBrace"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "ConyBlockBrace.ConyToggleHighlighting",
+          "when": "editorFocus"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [
+          ".js"
+        ]
+      },
+      {
+        "id": "typescript",
+        "extensions": [
+          ".ts"
+        ]
+      },
+      {
+        "id": "json",
+        "extensions": [
+          ".json"
+        ]
+      },
+      {
+        "id": "java",
+        "extensions": [
+          ".java"
+        ]
+      },
+      {
+        "id": "c",
+        "extensions": [
+          ".c"
+        ]
+      },
+      {
+        "id": "cpp",
+        "extensions": [
+          ".cpp"
+        ]
+      }
+    ],
+    "scripts": {
+      "lint": "eslint .",
+      "pretest": "npm run lint",
+      "test": "node ./test/runTest.js"
+    },
+    "devDependencies": {
+      "@types/vscode": "^1.10.5",
+      "@types/mocha": "^10.0.1",
+      "@types/node": "16.x",
+      "eslint": "^8.47.0",
+      "glob": "^10.3.3",
+      "mocha": "^10.2.0",
+      "typescript": "^5.1.6",
+      "@vscode/test-electron": "^2.3.4"
+    },
+    "configuration": {
+      "type": "object",
+      "title": "BlockBrace Configuration",
+      "properties": {
+        "ConyBlockBrace.blockColors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "rgba(255, 0, 0, 0.3)",
+            "rgba(0, 255, 0, 0.3)",
+            "rgba(0, 0, 255, 0.3)",
+            "rgba(154, 152, 152, 0.3)"
+          ],
+          "description": "可配置颜色参数数组,数组中加入的颜色配置信息会被循环调用。Colors for different levels of code blocks"
+        },
+        "ConyBlockBrace.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "打开Vscode默认启动选项,true为是,false为否。 Whether to enable the BlockBrace functionality by default"
+        }
+      }
+    }
+  }
+}
