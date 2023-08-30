@@ -1,14 +1,18 @@
 {
   "name": "ConyBlockBrace",
   "displayName": "BlockBrace",
-  "description": "本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,实现可视化编程.",
+  "description": "本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.This plugin can highlight JavaScript statement blocks composed of curly braces (curly braces) for easy editing and viewing of {} code blocks. It supports Js, Ts, Json, Java, C, and Cpp to achieve visual programming.",
   "version": "1.0.2",
+  "publisher": "vsce loginsdsds222",
+  "keywords": ["ConyBlockBrace","Block Brace","Block","Brace","beautify Code","Code"],
+  "icon": "image/icon.jpg",
+  "pricing": "Free",
   "engines": {
     "vscode": "^0.10.5"
   },
   "categories": [
     "Other"
-  ],
+  ],"repository": {"url": ""},
   "activationEvents": [
     "onLanguage:javascript",
     "onLanguage:typescript",
