@@ -1,65 +1,32 @@
-# ConyTextSync README
+# ConyBlockBrace README
 
-This is the README for your extension "ConyTextSync". After writing up a brief description, we recommend including the following sections.
+Cony Block Brace{}，A Java\javascript\C\CPP\Json Block Brace Highlighting Extension.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
+Cony Block Brace 本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.This plugin can highlight JavaScript statement blocks composed of curly braces (curly braces) for easy editing and viewing of {} code blocks. It supports Js, Ts, Json, Java, C, and Cpp to achieve visual programming.
+![Alt text](images/icon.png)
+![Alt text](images/Snipaste_2023-08-31_01-44-22.png)
+![Alt text](images/Snipaste_2023-08-31_01-45-59.png)
+![Alt text](images/Snipaste_2023-08-31_01-46-28.png)
+![Alt text](images/Snipaste_2023-08-31_01-48-48.png)
+![Alt text](images/Snipaste_2023-08-31_01-54-08.png)
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+No.vsce create-publisher your-publisher-name  
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Not Any Settings.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+NOT.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+新版本发布
 
 ### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
+A New Extension. 
 **Enjoy!**

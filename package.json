@@ -12,7 +12,7 @@
   },
   "categories": [
     "Other"
-  ],"repository": {"url": ""},
+  ],"repository": {"url": "https://github.com/sdsds222/ConyBlockBrace"},
   "activationEvents": [
     "onLanguage:javascript",
     "onLanguage:typescript",
