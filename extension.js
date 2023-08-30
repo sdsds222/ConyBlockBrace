@@ -135,7 +135,7 @@ function activate(context) {
     activeEditor = editor;
     if (editor) {
       updateDecorations();
-    }\
+    }
   });
 
   vscode.workspace.onDidChangeTextDocument(event => {
