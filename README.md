@@ -17,8 +17,9 @@
 [![Steam (games)](https://img.shields.io/badge/dynamic/json?logo=steam&label=Steam&labelColor=134375&suffix=+Games&color=0b1a37&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3DsteamGames%26queryKey%3D76561198239587204&longCache=true)](https://steamcommunity.com/profiles/76561198239587204/)
 [![Steam (friends)](https://img.shields.io/badge/dynamic/json?logo=steam&label=Steam+Friends&labelColor=134375&color=0b1a37&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3DsteamFriends%26queryKey%3D76561198239587204&longCache=true)](https://steamcommunity.com/profiles/76561198239587204/)
 [![Reddit](https://img.shields.io/badge/dynamic/json?logo=reddit&logoColor=white&label=Reddit+Karma&labelColor=FF4500&color=282c34&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3Dreddit%26queryKey%3Dsdsds222&longCache=true)](https://www.reddit.com/user/sdsds222)
-[![star](https://gitee.com/sdsds222/ConyBlockBrace/badge/star.svg?theme=dark)](https://gitee.com/sdsds222/ConyBlockBrace)
 [![Build Status](https://dev.azure.com/407042815/vue-mapvgl/_apis/build/status/vue-mapvgl-Node.js%20With%20Grunt-CI?branchName=master)]()
+[![star](https://gitee.com/sdsds222/ConyBlockBrace/badge/star.svg?theme=dark)](https://gitee.com/sdsds222/ConyBlockBrace)
+[![fork](https://gitee.com/sdsds222/ConyBlockBrace/badge/fork.svg?theme=white)](https://gitee.com/sdsds222/ConyBlockBrace/members)
 
 
 Cony Block Brace{}，A Java\javascript\C\CPP\Json Block Brace Highlighting Extension.
@@ -28,10 +29,14 @@ Cony Block Brace{}，A Java\javascript\C\CPP\Json Block Brace Highlighting Exten
 
 
 
+Repository 仓库：
 
 Github:https://github.com/sdsds222/ConyBlockBrace/
-## Features
 
+Gitee:https://gitee.com/sdsds222/ConyBlockBrace
+
+[![Fork me on Gitee](https://gitee.com/sdsds222/ConyBlockBrace/widgets/widget_6.svg)](https://gitee.com/sdsds222/ConyBlockBrace)
+## Features
 Cony Block Brace 本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.This plugin can highlight JavaScript statement blocks composed of curly braces (curly braces) for easy editing and viewing of {} code blocks. It supports Js, Ts, Json, Java, C, and Cpp to achieve visual programming.
 
 插件功能默认关闭，需要在右键菜单中激活，也可前往配置文件配置参数默认启动。
