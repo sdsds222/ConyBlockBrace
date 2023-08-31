@@ -1,4 +1,4 @@
-# ConyBlockBrace README
+# ConyBlockBrace 代码块高亮显示插件
 
 [![](https://img.shields.io/badge/Author-sdsds222-orange.svg)](https://gitee.com/wangjiabin-x/uh5)
 [![](https://img.shields.io/badge/version-v1.1.5-brightgreen.svg)](https://gitee.com/wangjiabin-x/uh5)
