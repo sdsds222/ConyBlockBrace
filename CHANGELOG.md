@@ -1,8 +1,6 @@
 # Change Log
 
-All notable changes to the "ConyBlockBrace" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+发布并更新1.1.6版本
 
 ## [Unreleased]
 
