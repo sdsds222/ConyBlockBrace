@@ -36,6 +36,11 @@ The function is disabled by default, which needs to be activated in the editor r
 
 
 ![图片](images/Snipaste_2023-08-31_01-54-08.png)
+
+
+![Alt](https://repobeats.axiom.co/api/embed/c7963ed38afcd5c7da71680e66b97a543e0e9870.svg "Repobeats analytics image")
+
+
 ## Requirements
 
 ## Extension Settings
