@@ -192,14 +192,18 @@ function activate(context) {
 
     const stack = []; // 用于跟踪代码块的堆栈
     const blockStartLines = {}; // 用于存储每个左大括号所在的行数
-    let level = 0; // 代码块层次
-    let blockLevel = 0;
 
+
+    let level = 0; // 代码块层次
+
+    let blockLevel = 0;
 
     let match;
     while ((match = blockRegex.exec(text))) {
 
-      if (match[0] === '{') {
+
+
+      if (match[0] === '{' && '}') {
         stack.push({ type: 'start', index: match.index });
         blockStartLines[match.index] = activeEditor.document.positionAt(match.index).line;
 
@@ -247,31 +251,15 @@ function activate(context) {
           decorations.push({ range: lineRange, hoverMessage: 'Line Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
         }
 
-        // for (let i = 0; i < decorations.length; i++) {
-        //   if (decorations[i].blockLevel == blockLevel + 1 && decorations[i].closed == false) {
-        //     decorations[i].blockLevelId = level;
-        //     decorations[i].closed = true;
-        //   }
-        // }
-
-
-        let row = blockLevel - 1;
-        let color = 0;
-        if (!dcrts[row]) {
-          dcrts[row] = [];
-          color = row % blockColors.length;
-          dcrts[row].push({ level: level, color: color });
-        } else {
-          if (colorMode == true) {
-            color = row % blockColors.length;
-          } else {
-            const lastElement = dcrts[row][dcrts[row].length - 1];
-            color = (lastElement.color + 1) % blockColors.length;
+        for (let i = 0; i < decorations.length; i++) {
+          if (decorations[i].blockLevel == blockLevel + 1 && decorations[i].closed == false) {
+            decorations[i].blockLevelId = level;
+            decorations[i].closed = true;
           }
-          dcrts[row].push({ level: level, color: color });
         }
 
-        dcrt1 = [].concat(...dcrts);
+
+
 
 
         blockLevel--;
@@ -280,7 +268,7 @@ function activate(context) {
 
 
     let maxLevel = 1;
-    let maxBlockLevel = 0;
+    let maxBlockLevel = 1;
     for (let i = 0; i < decorations.length; i++) {
       if (decorations[i].level > maxLevel) {
         maxLevel = decorations[i].level;
@@ -296,6 +284,62 @@ function activate(context) {
         decorations[j].level1 = maxLevel + 1 - decorations[j].level;
       }
     }
+
+    for (let k = 1; k <= maxBlockLevel; k++) {
+      for (let i = 0; i < decorations.length; i++) {
+        if (decorations[i].hoverMessage == "Code Block End" && decorations[i].blockLevel == k) {
+          let blockLevel1 = decorations[i].blockLevel;
+          let level1 = decorations[i].level;
+          let blockLevelId1 = decorations[i].blockLevelId;
+          let row = blockLevel1 - 1;
+          let color = 0;
+          if (!dcrts[row]) {
+            dcrts[row] = [];
+            color = row % blockColors.length;
+            dcrts[row].push({ level: level1, blockLevelId: blockLevelId1, color: color });
+          } else {
+            if (colorMode == true) {
+              color = row % blockColors.length;
+            } else {
+              const lastElement = dcrts[row][dcrts[row].length - 1];
+              if (lastElement.blockLevelId != blockLevelId1) {
+                color = row % blockColors.length;
+                if (row != 0) {
+                  let dcrt2 = [].concat(...dcrts);
+                  for (let l = 0; l < dcrt2.length; l++) {
+                    if (dcrt2[l].level == blockLevelId1) {
+                      if (dcrt2[l].color == color) {
+                        color = (row + 1) % blockColors.length;
+                      }
+                      break;
+                    }
+                  }
+                }
+              } else {
+                color = (lastElement.color + 1) % blockColors.length;
+                if (row != 0) {
+                  let dcrt2 = [].concat(...dcrts);
+                  for (let l = 0; l < dcrt2.length; l++) {
+                    if (dcrt2[l].level == blockLevelId1) {
+                      if (dcrt2[l].color == color) {
+                        color = (color + 1) % blockColors.length;
+                      }
+                      break;
+                    }
+                  }
+                }
+              }
+            }
+            dcrts[row].push({ level: level1, blockLevelId: blockLevelId1, color: color });
+          }
+        }
+
+      }
+    }
+
+    console.log(decorations);
+    dcrt1 = [].concat(...dcrts);
+
 
 
     blockDecorators.forEach((decorator, index) => {

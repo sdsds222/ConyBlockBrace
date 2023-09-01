@@ -2,7 +2,7 @@
 
 
 [![](https://img.shields.io/badge/Author-sdsds222-orange.svg)](https://gitee.com/wangjiabin-x/uh5)
-[![](https://img.shields.io/badge/version-v1.3.9-brightgreen.svg)](https://gitee.com/wangjiabin-x/uh5)
+[![](https://img.shields.io/badge/version-v1.5.2-brightgreen.svg)](https://gitee.com/wangjiabin-x/uh5)
 [![license](https://img.shields.io/github/license/elemefe/vue-amap.svg?style=flat-square)](https://github.com/sdsds222/ConyBlockBrace)
 
 
@@ -42,13 +42,16 @@ Cony Block Brace 本插件可以将花括号(大括号)构成的js语句块高�
 This plugin can highlight JavaScript statement blocks composed of curly braces (curly braces) for easy editing and viewing of {} code blocks. It supports Js, Ts, Json, Java, C, and Cpp to achieve visual programming.
 
 本插件提供两种颜色渲染模式：
+
 1：同层同级代码块同色，层与层之间异色。（默认关闭）
-2：多彩模式，层与层之间异色，且同层的语句块与语句块之间异色，更便于编辑与审阅代码块。（默认开启）
+
+2：多彩模式，层与层之间异色，且同层的语句块与语句块之间异色，通过算法实现相邻的语句块颜色不同，更便于编辑与审阅代码块。（默认开启）
 
 This plugin provides two color rendering modes:
 
-Same color for code blocks at the same level, with different colors between levels. (Default: Off)
-Colorful mode: Different colors between levels and also between code blocks at the same level, making it easier to edit and review code blocks. (Default: On)
+1: Same color for code blocks at the same level, with different colors between levels. (default: Off)
+
+2: Colorful mode, with different colors between layers, and different colors between statement blocks in the same layer. Through algorithms, adjacent statement blocks have different colors, making it easier to edit and review code blocks. (default On)
 
 插件高亮颜色渲染功能默认关闭，需要在编辑器右键菜单中点击激活，也可前往配置文件配置参数默认启动,以及修改颜色。
 
@@ -78,6 +81,17 @@ ctrl+alt+k 临时左移颜色
 ![图片](https://raw.githubusercontent.com/sdsds222/ConyBlockBrace/main/images/Snipaste_2023-08-31_01-44-22.png)
 
 ![图片](images/Snipaste_2023-08-31_01-45-59.png)
+
+
+
+
+
+在多层复杂嵌套循环代码块中的使用效果，可有改善编程体验：
+
+The use effect in multi-layer complex nested loop code blocks can improve the programming experience:
+
+
+![图片](images/test.png)
 
 ![图片](https://gitee.com/sdsds222/ConyBlockBrace/raw/main/images/Snipaste_2023-08-31_01-46-28.png)
 
@@ -109,5 +123,7 @@ A New Extension.
 修改插件接收页内容
 ### 1.3.6
 修复单行大括号语句块渲染异常的问题。
+### 1.5.2
+修复相邻嵌套代码块颜色相同的问题。
 
 **Enjoy!**
