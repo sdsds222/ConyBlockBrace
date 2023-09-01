@@ -211,9 +211,11 @@ function activate(context) {
         const startRange = new vscode.Range(startLineStartPosition.translate(0, startCharacter), startLineStartPosition.translate(0, activeEditor.document.lineAt(startLine).text.length));
         const endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, endCharacter));
 
-        decorations.push({ range: startRange, hoverMessage: 'Code Block Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
-        decorations.push({ range: endRange, hoverMessage: 'Code Block End', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
-
+        if (startLine != endLine) {
+          
+          decorations.push({ range: startRange, hoverMessage: 'Code Block Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
+          decorations.push({ range: endRange, hoverMessage: 'Code Block End', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
+        }
         // 添加每行第一个字符的底色
         for (let i = startLine + 1; i < endLine; i++) {
           const lineStartPosition = new vscode.Position(i, 0);
