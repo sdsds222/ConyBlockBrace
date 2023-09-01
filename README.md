@@ -2,7 +2,7 @@
 
 
 [![](https://img.shields.io/badge/Author-sdsds222-orange.svg)](https://gitee.com/wangjiabin-x/uh5)
-[![](https://img.shields.io/badge/version-v1.3.5-brightgreen.svg)](https://gitee.com/wangjiabin-x/uh5)
+[![](https://img.shields.io/badge/version-v1.3.9-brightgreen.svg)](https://gitee.com/wangjiabin-x/uh5)
 [![license](https://img.shields.io/github/license/elemefe/vue-amap.svg?style=flat-square)](https://github.com/sdsds222/ConyBlockBrace)
 
 
@@ -107,7 +107,7 @@ NOT.
 A New Extension. 
 ### 1.1.5
 修改插件接收页内容
-### 1.3.5
+### 1.3.6
 修复单行大括号语句块渲染异常的问题。
 
 **Enjoy!**

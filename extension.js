@@ -14,8 +14,8 @@ var theNum = 6;
 var colorMode = false;
 
 function toggleHighlighting() {
-  console.log("ConyBlockBrace启用状态:" + highlightingEnabled);
   highlightingEnabled = !highlightingEnabled;
+  console.log("ConyBlockBrace启用状态:" + highlightingEnabled);
   if (highlightingEnabled) {
     updateDecorationsFunction();
     vscode.window.showInformationMessage('ConyBlockBrace正在运行 Runing');
@@ -26,8 +26,22 @@ function toggleHighlighting() {
 
 
 
+
 function activate(context) {
-  console.log('ConyBlockBrace正在运行');
+  console.log('ConyBlockBrace正在运行\n' +
+    ' ██████╗ █████╗ ██╗   █╗██╗   ██╗\n' +
+    '██╔════╝██╔══██╗███╗  █║╚██╗ ██╔╝\n' +
+    '██║     ██║  ██║█╔██╗ █║ ╚████╔╝ \n' +
+    '██║     ██║  ██║█║╚██╗█║  ╚██╔╝  \n' +
+    '╚██████╗╚█████╔╝█║ ╚███║   ██║   \n\n' +
+
+    '██████╗ ██╗      ██████╗  ██████╗██╗  ██╗ ██████╗ ██████╗  █████╗  ██████╗███████╗\n' +
+    '██╔══██╗██║     ██╔═══██╗██╔════╝██║ ██╔╝ ██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝\n' +
+    '██████╔╝██║     ██║   ██║██║     █████╔   ██████╔╝██████╔╝███████║██║     █████╗  \n' +
+    '██╔══██╗██║     ██║   ██║██║     ██╔═██╗  ██╔══██╗██╔══██╗██╔══██║██║     ██╔══╝ \n' +
+    '██████╔╝███████╗╚██████╔╝╚██████╗██║  ██╗ ██████╔╝██║  ██║██║  ██║╚██████╗███████╗\n' +
+    'Cony Studio by sdsds222');
+
   // 注册 ToggleHighlighting 命令
   context.subscriptions.push(
     vscode.commands.registerCommand('ConyBlockBrace.ConyToggleHighlighting', toggleHighlighting)
@@ -209,10 +223,19 @@ function activate(context) {
         const endCharacter = activeEditor.document.lineAt(endLine).text.length;
 
         const startRange = new vscode.Range(startLineStartPosition.translate(0, startCharacter), startLineStartPosition.translate(0, activeEditor.document.lineAt(startLine).text.length));
-        const endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, endCharacter));
+
+        const endLineText = activeEditor.document.lineAt(endLine).text;
+        let endRange;
+        if (endLineText.includes('{') && '}') {
+          endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, startCharacter));
+        } else {
+          endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, endCharacter));
+        }
+
+
 
         if (startLine != endLine) {
-          
+
           decorations.push({ range: startRange, hoverMessage: 'Code Block Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
           decorations.push({ range: endRange, hoverMessage: 'Code Block End', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
         }
