@@ -9,7 +9,7 @@ var updateDecorationsFunction;
 
 var highlightingEnabled = false; // 默认关闭高亮
 
-var theNum = 3;
+var theNum = 6;
 
 var colorMode = false;
 
@@ -49,19 +49,19 @@ function activate(context) {
   // 注册增加数字的命令
   const increaseNumCommand = vscode.commands.registerCommand('ConyBlockBrace.increaseNum', () => {
     theNum++;
-    if (theNum < 3) {
-      theNum = 3;
+    if (theNum < 6) {
+      theNum = 6;
     }
 
     updateDecorationsFunction();
-    vscode.window.showInformationMessage(`theNum increased to ${theNum}`);
+    vscode.window.showInformationMessage(`右移代码块颜色，位置:${theNum}`);
   });
 
   // 注册减少数字的命令
   const decreaseNumCommand = vscode.commands.registerCommand('ConyBlockBrace.decreaseNum', () => {
     theNum--;
-    if (theNum < 3) {
-      theNum = 3;
+    if (theNum < 6) {
+      theNum = 6;
     }
     updateDecorationsFunction();
     vscode.window.showInformationMessage(`theNum decreased to ${theNum}`);
@@ -78,11 +78,11 @@ function activate(context) {
     // 增加数字的快捷键
     vscode.commands.registerCommand('ConyBlockBrace.increaseNum', () => {
       theNum++;
-      if (theNum < 3) {
-        theNum = 3;
+      if (theNum < 6) {
+        theNum = 6;
       }
       updateDecorationsFunction();
-      vscode.window.showInformationMessage(`theNum increased to ${theNum}`);
+      vscode.window.showInformationMessage(`左移代码块颜色，位置:${theNum}`);
     });
     vscode.workspace.getConfiguration().update(
       'keybindings', [
@@ -98,8 +98,8 @@ function activate(context) {
     // 减少数字的快捷键
     vscode.commands.registerCommand('ConyBlockBrace.decreaseNum', () => {
       theNum--;
-      if (theNum < 3) {
-        theNum = 3;
+      if (theNum < 6) {
+        theNum = 6;
       }
       updateDecorationsFunction();
       vscode.window.showInformationMessage(`theNum decreased to ${theNum}`);
@@ -167,6 +167,10 @@ function activate(context) {
       return;
     }
 
+    let dcrts = [];
+    let dcrt1 = [];
+
+
     const text = activeEditor.document.getText();
     const blockRegex = /{|}/g; // 匹配左大括号和右大括号
 
@@ -225,6 +229,26 @@ function activate(context) {
         //   }
         // }
 
+
+        let row = blockLevel - 1;
+        let color = 0;
+        if (!dcrts[row]) {
+          dcrts[row] = [];
+          color = row % blockColors.length;
+          dcrts[row].push({ level: level, color: color });
+        } else {
+          if (colorMode == true) {
+            color = row % blockColors.length;
+          } else {
+            const lastElement = dcrts[row][dcrts[row].length - 1];
+            color = (lastElement.color + 1) % blockColors.length;
+          }
+          dcrts[row].push({ level: level, color: color });
+        }
+
+        dcrt1 = [].concat(...dcrts);
+
+
         blockLevel--;
       }
     }
@@ -251,11 +275,20 @@ function activate(context) {
 
     blockDecorators.forEach((decorator, index) => {
       let num = (theNum - index) % blockColors.length;
-      if (colorMode == true) {
-        activeEditor.setDecorations(decorator, decorations.filter(decoration => decoration.level1 % blockColors.length == num).map(decoration => decoration.range));
-      } else {
-        activeEditor.setDecorations(decorator, decorations.filter(decoration => decoration.blockLevel % blockColors.length == num).map(decoration => decoration.range));
+
+      const colorValue = num; // 要匹配的 color 值
+      const matchedRanges = [];
+      for (const dcrt of dcrt1) {
+        if (dcrt.color === colorValue) {
+          for (const decoration of decorations) {
+            if (decoration.level === dcrt.level) {
+              matchedRanges.push(decoration.range);
+            }
+          }
+        }
       }
+
+      activeEditor.setDecorations(decorator, matchedRanges);
     });
   }
 
