@@ -20,12 +20,14 @@
 [![Build Status](https://dev.azure.com/407042815/vue-mapvgl/_apis/build/status/vue-mapvgl-Node.js%20With%20Grunt-CI?branchName=master)]()
 
 
-Cony Block Brace{}，A Java\javascript\C\CPP\Json Block Brace Highlighting Extension.
+Cony Block Brace{}，A JJava、Javascript、Json、C、C++、C# Code Block Brace Highlighting Extension.
 
-一个支持将Java、Javascript、C、C++程序语句中的大括号围起来的语句代码块高亮醒目地显示的插件，便于开发者审查阅览程序语句.
+一个支持将Java、Javascript、Json、C、C++、C#程序语句中的大括号围起来的语句代码块高亮醒目地显示的插件，便于开发者审查阅览程序语句.
 
+![图片](https://gitee.com/sdsds222/ConyBlockBrace/raw/main/images/conyblockbrace1.png)
 
-
+VScode插件扩展商店页面：
+https://marketplace.visualstudio.com/items?itemName=sdsds222.ConyBlockBrace
 
 Repository 仓库：
 
@@ -33,13 +35,22 @@ Github:https://github.com/sdsds222/ConyBlockBrace/
 
 Gitee:https://gitee.com/sdsds222/ConyBlockBrace
 
-[![Fork me on Gitee](image/../images/gitee.png)](https://gitee.com/sdsds222/ConyBlockBrace)
 ## Features
 Cony Block Brace 本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.This plugin can highlight JavaScript statement blocks composed of curly braces (curly braces) for easy editing and viewing of {} code blocks. It supports Js, Ts, Json, Java, C, and Cpp to achieve visual programming.
 
 插件功能默认关闭，需要在右键菜单中激活，也可前往配置文件配置参数默认启动。
 
 The function is disabled by default, which needs to be activated in the editor right-click menu, or you can go to the configuration file to 
+
+快捷键：
+
+ctrl+alt+s 开启、关闭功能；
+
+ctrl+alt+i 临时右移颜色
+
+ctrl+alt+k 临时左移颜色
+
+更多功能请在配置文件中浏览和配置。
 
 
 插件使用效果演示图片:

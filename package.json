@@ -2,9 +2,16 @@
   "name": "ConyBlockBrace",
   "displayName": "BlockBrace",
   "description": "本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.本插件可以将花括号(大括号)构成的js语句块高亮显示,便于{}代码块的编辑与查看,支持Js、Ts、Json、Java、C、Cpp,从而实现可视化编程.This plugin can highlight JavaScript statement blocks composed of curly braces (curly braces) for easy editing and viewing of {} code blocks. It supports Js, Ts, Json, Java, C, and Cpp to achieve visual programming.",
-  "version": "1.2.8",
+  "version": "1.3.1",
   "publisher": "sdsds222",
-  "keywords": ["ConyBlockBrace","Block Brace","Block","Brace","beautify Code","Code"],
+  "keywords": [
+    "ConyBlockBrace",
+    "Block Brace",
+    "Block",
+    "Brace",
+    "beautify Code",
+    "Code"
+  ],
   "icon": "images/conyblockbrace.png",
   "pricing": "Free",
   "engines": {
@@ -12,14 +19,18 @@
   },
   "categories": [
     "Other"
-  ],"repository": {"url": "https://github.com/sdsds222/ConyBlockBrace"},
+  ],
+  "repository": {
+    "url": "https://github.com/sdsds222/ConyBlockBrace"
+  },
   "activationEvents": [
     "onLanguage:javascript",
     "onLanguage:typescript",
     "onLanguage:json",
     "onLanguage:java",
     "onLanguage:c",
-    "onLanguage:cpp"
+    "onLanguage:cpp",
+    "onLanguage:c#"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -35,7 +46,37 @@
       {
         "command": "ConyBlockBrace.ConyToggleHighlighting",
         "title": "Switch On/Off BlockBrace"
+      },
+      {
+        "command": "ConyBlockBrace.increaseNum",
+        "title": "Move Color right"
+      },
+      {
+        "command": "ConyBlockBrace.decreaseNum",
+        "title": "Move Color left"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "ConyBlockBrace.increaseNum",
+        "key": "ctrl+alt+i",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ConyBlockBrace.decreaseNum",
+        "key": "ctrl+alt+k",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "ConyBlockBrace.ConyToggleHighlighting",
+        "key": "ctrl+alt+s",
+        "when": "editorTextFocus"
+      }
+    ],
+    "activationEvents": [
+      "onCommand:ConyBlockBrace.increaseNum",
+      "onCommand:ConyBlockBrace.decreaseNum",
+      "onCommand:ConyBlockBrace.ConyToggleHighlighting"
     ],
     "menus": {
       "editor/context": [
@@ -81,6 +122,12 @@
         "extensions": [
           ".cpp"
         ]
+      },
+      {
+        "id": "c#",
+        "extensions": [
+          ".c#"
+        ]
       }
     ],
     "scripts": {
@@ -108,17 +155,22 @@
             "type": "string"
           },
           "default": [
-            "rgba(255, 0, 0, 0.3)",
-            "rgba(0, 255, 0, 0.3)",
             "rgba(0, 0, 255, 0.3)",
+            "rgba(0, 255, 0, 0.3)",
+            "rgba(255, 0, 0, 0.3)",
             "rgba(154, 152, 152, 0.3)"
           ],
-          "description": "可配置颜色参数数组,数组中加入的颜色配置信息会被循环调用。Colors for different levels of code blocks"
+          "description": "可配置颜色参数数组,数组中加入的颜色配置信息会被循环调用,可通过此修改颜色显示的顺序。Colors for different levels of code blocks"
         },
         "ConyBlockBrace.enabled": {
           "type": "boolean",
           "default": false,
           "description": "打开Vscode默认启动选项,true为是,false为否。 Whether to enable the BlockBrace functionality by default"
+        },
+        "ConyBlockBrace.ColorModeEnabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "打开色彩模式,同一层代码块内同级的代码块将显示不同颜色。 Colors showing in a common brace block.;"
         }
       }
     }
