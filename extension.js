@@ -230,40 +230,44 @@ function activate(context) {
 
         const endLineText = activeEditor.document.lineAt(endLine).text;
         let endRange;
-        if (endLineText.includes('{') && '}') {
-          endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, startCharacter));
-        } else {
-          endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, endCharacter));
-        }
-
-
 
         if (startLine != endLine) {
 
+          if (endLineText.includes('{') && '}') {
+            endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, startCharacter));
+          } else {
+            endRange = new vscode.Range(endLineStartPosition.translate(0, startCharacter), endLineStartPosition.translate(0, endCharacter));
+          }
+
+
+
+
           decorations.push({ range: startRange, hoverMessage: 'Code Block Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
           decorations.push({ range: endRange, hoverMessage: 'Code Block End', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
-        }
-        // 添加每行第一个字符的底色
-        for (let i = startLine + 1; i < endLine; i++) {
-          const lineStartPosition = new vscode.Position(i, 0);
-          //const lineFirstCharacter = activeEditor.document.lineAt(i).firstNonWhitespaceCharacterIndex;
-          const lineRange = new vscode.Range(lineStartPosition.translate(0, startCharacter), lineStartPosition.translate(0, startCharacter + 1));
-          decorations.push({ range: lineRange, hoverMessage: 'Line Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
-        }
 
-        for (let i = 0; i < decorations.length; i++) {
-          if (decorations[i].blockLevel == blockLevel + 1 && decorations[i].closed == false) {
-            decorations[i].blockLevelId = level;
-            decorations[i].closed = true;
+
+          // 添加每行第一个字符的底色
+          for (let i = startLine + 1; i < endLine; i++) {
+            const lineStartPosition = new vscode.Position(i, 0);
+            //const lineFirstCharacter = activeEditor.document.lineAt(i).firstNonWhitespaceCharacterIndex;
+            const lineRange = new vscode.Range(lineStartPosition.translate(0, startCharacter), lineStartPosition.translate(0, startCharacter + 1));
+            decorations.push({ range: lineRange, hoverMessage: 'Line Start', level: level, level1: 0, blockLevel: blockLevel, closed: false, blockLevelId: 0 });
+          }
+
+          for (let i = 0; i < decorations.length; i++) {
+            if (decorations[i].blockLevel == blockLevel + 1 && decorations[i].closed == false) {
+              decorations[i].blockLevelId = level;
+              decorations[i].closed = true;
+            }
           }
         }
-
-
-
-
-
         blockLevel--;
+
       }
+
+
+
+
     }
 
 
@@ -295,24 +299,30 @@ function activate(context) {
           let color = 0;
           if (!dcrts[row]) {
             dcrts[row] = [];
-            color = row % blockColors.length;
-            dcrts[row].push({ level: level1, blockLevelId: blockLevelId1, color: color });
+            if (row == 0) {
+              color = 0;
+              dcrts[0].push({ level: level1, blockLevelId: blockLevelId1, color: color });
+            } else {
+              let dcrt2 = [].concat(...dcrts);
+              for (let l = 0; l < dcrt2.length; l++) {
+                if (dcrt2[l].level == blockLevelId1) {
+                  color = (dcrt2[l].color + 1) % blockColors.length;
+                  dcrts[row].push({ level: level1, blockLevelId: blockLevelId1, color: color });
+                  break;
+                }
+              }
+            }
           } else {
             if (colorMode == true) {
               color = row % blockColors.length;
             } else {
               const lastElement = dcrts[row][dcrts[row].length - 1];
               if (lastElement.blockLevelId != blockLevelId1) {
-                color = row % blockColors.length;
-                if (row != 0) {
-                  let dcrt2 = [].concat(...dcrts);
-                  for (let l = 0; l < dcrt2.length; l++) {
-                    if (dcrt2[l].level == blockLevelId1) {
-                      if (dcrt2[l].color == color) {
-                        color = (row + 1) % blockColors.length;
-                      }
-                      break;
-                    }
+                let dcrt2 = [].concat(...dcrts);
+                for (let l = 0; l < dcrt2.length; l++) {
+                  if (dcrt2[l].level == blockLevelId1) {
+                    color = (dcrt2[l].color + 1) % blockColors.length;
+                    break;
                   }
                 }
               } else {
@@ -337,7 +347,7 @@ function activate(context) {
       }
     }
 
-    console.log(decorations);
+    //console.log(decorations);
     dcrt1 = [].concat(...dcrts);
 
 
